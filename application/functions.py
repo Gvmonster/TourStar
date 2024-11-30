@@ -1,4 +1,5 @@
 import random
+import geohash2
 
 def getGeolocationData(lat, long): #recebe latitude e longitude do ActivityMQ
     listGeolocation = [lat, long]
@@ -29,5 +30,25 @@ def inputUserGeoHash():
 
     return geo_hash
 
+def convertToGeoHash(data_GeolocalitionData, precision):
+    geohash = geohash2.encode(data_GeolocalitionData[0], data_GeolocalitionData[1], precision)
+    print(f"Geohash: {geohash}")
+
+    return geohash
+
+
+
+#def lifeControl(geo_hash):
+
+def checkResponseUser(answer_key_geohash, geohash_user_response):
+    if(answer_key_geohash == geohash_user_response):
+        print('------------------------\nParabéns, você acertou!\n------------------------\nProxima rodada')
+        return True
+    else:
+        print("Não foi dessa vez")
+        return False
+
+    
+    
 
 
