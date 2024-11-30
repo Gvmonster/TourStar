@@ -46,10 +46,10 @@ def score_control(resultCheck):
 
 def checkResponseUser(answer_key_geohash, geohash_user_response):
     if(answer_key_geohash == geohash_user_response):
-        print('------------------------\nParabéns, você acertou!\n------------------------\nProxima rodada')
+        print('------------------------\nParabéns, você achou o tesouso!\n------------------------\nProxima rodada')
         return True
     else:
-        print("Não foi dessa vez")
+        print("O tesouro não está aqui!")
         return False
 
     
