@@ -31,10 +31,12 @@ while game_Status:
     if(result_check):
         score = score + functions.score_control(result_check)
         print(f"------------\nPontuação atual: {score}-------------\n")
+        print(f"------------\nNúmero de vidas: {livesPlayer}-------------\n")
+    else:
+        livesPlayer = livesPlayer - functions.lives_control(result_check)
+        print(f"------------\nNúmero de vidas: {livesPlayer}-------------\n")
 
-    
-
-                               
+                              
     menu_op = input("Deseja continuar? [S] para sim ou [N] para não")
     if(menu_op == "N"):
         print('------------------------\nJogo encerrado!\n------------------------\n')

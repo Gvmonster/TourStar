@@ -42,6 +42,11 @@ def score_control(resultCheck):
         return 5
     else:
         return 0
+    
+def lives_control(result_check):
+    if(result_check == False):
+        return 1
+
 
 
 def checkResponseUser(answer_key_geohash, geohash_user_response):
