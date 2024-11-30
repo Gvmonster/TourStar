@@ -41,6 +41,9 @@ while game_Status:
     if(menu_op == "N"):
         print('------------------------\nJogo encerrado!\n------------------------\n')
         game_Status = False
+
+
+teste= 0
     
 
 
