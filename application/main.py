@@ -9,6 +9,7 @@ data_Tips = pb.read_csv('tips_wonders_of_world.csv', encoding='ISO-8859-1')
 #server = sk.
 
 game_Status = True
+score = 0
 livesPlayer = 3
 
 while game_Status:
@@ -26,6 +27,10 @@ while game_Status:
     geo_hash = functions.inputUserGeoHash()
     answer_key_geohash = functions.convertToGeoHash(data_GeolocalitionData, 7)
     result_check = functions.checkResponseUser(answer_key_geohash, geo_hash)
+
+    if(result_check):
+        score = score + functions.score_control(result_check)
+        print(f"------------\nPontuação atual: {score}-------------\n")
 
     
 

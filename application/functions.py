@@ -9,9 +9,8 @@ def getGeolocationData(lat, long): #recebe latitude e longitude do ActivityMQ
 
 def registerUser(name):
     name = name
-    score = 0 
 
-    return [name, score]
+    return [name]
 
 def filter_Values_Column(data):
     list_tips = data['CRISTO REDENTOR'].tolist()
@@ -38,7 +37,12 @@ def convertToGeoHash(data_GeolocalitionData, precision):
 
 
 
-#def lifeControl(geo_hash):
+def score_control(resultCheck):
+    if(resultCheck):
+        return 5
+    else:
+        return 0
+
 
 def checkResponseUser(answer_key_geohash, geohash_user_response):
     if(answer_key_geohash == geohash_user_response):
