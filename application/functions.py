@@ -1,7 +1,7 @@
 import random
 import geohash2
 
-def getGeolocationData(lat, long): #recebe latitude e longitude do ActivityMQ
+def getGeolocationData(lat, long):
     listGeolocation = [lat, long]
 
     return listGeolocation
