@@ -43,7 +43,6 @@ while game_Status:
         game_Status = False
 
 
-print("testando PR")
 
 
 
