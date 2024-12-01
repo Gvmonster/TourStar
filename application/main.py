@@ -21,7 +21,7 @@ while game_Status:
     data_filter = functions.filter_Values_Column(data_Tips)
 
     tip = functions.giveTips(data_filter)
-    print(f"Dica: {tip}")
+    print(f"\n Dica: {tip} \n")
 
 
     geo_hash = functions.inputUserGeoHash()
@@ -30,20 +30,20 @@ while game_Status:
 
     if(result_check):
         score = score + functions.score_control(result_check)
-        print(f"------------\nPontuação atual: {score}-------------\n")
-        print(f"------------\nNúmero de vidas: {livesPlayer}-------------\n")
+        print(f"\n------------ Pontuação atual: {score} -------------\n")
+        print(f"\n------------ Número de vidas: {livesPlayer} -------------\n")
     else:
         livesPlayer = livesPlayer - functions.lives_control(result_check)
-        print(f"------------\nNúmero de vidas: {livesPlayer}-------------\n")
+        print(f"\n------------ Número de vidas: {livesPlayer} -------------\n")
 
                               
-    menu_op = input("Deseja continuar? [S] para sim ou [N] para não")
-    if(menu_op == "N"):
-        print('------------------------\nJogo encerrado!\n------------------------\n')
+    menu_op = input("\nDeseja continuar? [S] para sim ou [N] para não\n")
+    if(menu_op == "N" or livesPlayer == 0):
+        print('\n------------------------\nJogo encerrado!\n------------------------\n')
         game_Status = False
 
 
-teste= 0
+
     
 
 
