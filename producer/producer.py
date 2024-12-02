@@ -3,6 +3,7 @@ import pandas as pd
 from io import StringIO
 import stomp
 import json
+import time
 
 s3 = boto3.client('s3')
 
@@ -14,22 +15,75 @@ def fileUpload(bucket_name, file_key, s3):
 
     data = pd.read_csv(csv_buffer)
 
-    print(data.head())
+    return data
 
-    return 
-
-"""def producer():
-    def __init__(self, host, port):
+class producer_data_geo():
+    def __init__(self, host, port, data, queue_name):
         self.connect_ActiveMQ = stomp.Connection([(host, port)])
-        self.connect_ActiveMQ.connect(wait=True)  
+        self.connect_ActiveMQ.connect(wait=True)
+        self.data = data  
+        self.queue_name = queue_name
 
-    def send_data(self, destinatario, assunto, corpo):
-        mensagem = {
-            "destinatario": destinatario,
-            "assunto": assunto,
-            "corpo": corpo
-        }"""
+    def send_data(self):
+        for index, row in self.data.iterrows():
+            print(row)
+            time.sleep(1) 
+
+            formatted_data = {
+                "Indice": index,
+                "Name": row['Name'],
+                "Type": row['Type'],
+                "Latitude": row['Latitude'],
+                "Longitude": row['Longitude'],
+                "Location": row['Location'],
+                "WikipediaLink": row['Wikipedia link'],
+                "PictureLink": row['Picture link'],
+                "BuildInYear": row['Build in year'],
+
+            }
+            self.connect_ActiveMQ.send(body=json.dumps(formatted_data), destination=f"/queue/{self.queue_name}")
+            print("Dado enviado!")
+
+    def close_connection(self):
+        self.connect_ActiveMQ.disconnect()
+
+class producer_data_tips():
+    def __init__(self, host, port, data, queue_name):
+        self.connect_ActiveMQ = stomp.Connection([(host, port)])
+        self.connect_ActiveMQ.connect(wait=True)
+        self.data = data  
+        self.queue_name = queue_name
+
+    def send_data(self):
+        for index, row in self.data.iterrows():
+            print(row)
+            time.sleep(1) 
+
+            formatted_data = {
+                "Indice": index,
+                "MURALHA DA CHINA": row['MURALHA DA CHINA'],
+                "PETRA": row['PETRA'],
+                "CRISTO REDENTOR": row['CRISTO REDENTOR'],
+                "MACHU PICCHU": row['MACHU PICCHU'],
+                "CHICHEN ITZA": row['CHICHEN ITZA'],
+                "COLISEU": row['COLISEU'],
+                "TAJ MAHAL": row['TAJ MAHAL'],
+            }
+            self.connect_ActiveMQ.send(body=json.dumps(formatted_data), destination=f"/queue/{self.queue_name}")
+            print("Dado enviado!")
+
+    def close_connection(self):
+        self.connect_ActiveMQ.disconnect()
 
 
-fileUpload('wonders-of-world-data-2024', 'wonders_of_world.csv' , s3)
-fileUpload('wonders-of-world-data-2024', 'tips_wonders_of_world.csv', s3)
+
+data_geo = fileUpload('wonders-of-world-data-2024', 'wonders_of_world.csv' , s3)
+data_tips = fileUpload('wonders-of-world-data-2024', 'tips_wonders_of_world.csv', s3)
+
+producer_data_geo = producer_data_geo('localhost', 61613, data_geo, 'data_geolocated')  
+producer_data_geo.send_data()
+producer_data_geo.close_connection()
+
+producer_data_tips = producer_data_tips('localhost', 61613, data_tips, 'tips')  
+producer_data_tips.send_data()
+producer_data_tips.close_connection()

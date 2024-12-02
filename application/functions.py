@@ -25,7 +25,7 @@ def giveTips(data):
     return data[list_indice]
 
 def inputUserGeoHash():
-    geo_hash = input("Digite algo: ")
+    geo_hash = input("Digite o código geohash: ")
 
     return geo_hash
 
@@ -47,11 +47,9 @@ def lives_control(result_check):
     if(result_check == False):
         return 1
 
-
-
 def checkResponseUser(answer_key_geohash, geohash_user_response):
     if(answer_key_geohash == geohash_user_response):
-        print('------------------------\nParabéns, você achou o tesouso!\n------------------------\nProxima rodada')
+        print('------------------------\nParabéns, você achou o tesouro!\n------------------------\nPróxima rodada')
         return True
     else:
         print("O tesouro não está aqui!")
