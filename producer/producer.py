@@ -17,7 +17,7 @@ def fileUpload(bucket_name, file_key, s3):
 
     return data
 
-class producer_data_geo():
+class Producer_Data_Geo():
     def __init__(self, host, port, data, queue_name):
         self.connect_ActiveMQ = stomp.Connection([(host, port)])
         self.connect_ActiveMQ.connect(wait=True)
@@ -47,7 +47,7 @@ class producer_data_geo():
     def close_connection(self):
         self.connect_ActiveMQ.disconnect()
 
-class producer_data_tips():
+class Producer_Data_Tips():
     def __init__(self, host, port, data, queue_name):
         self.connect_ActiveMQ = stomp.Connection([(host, port)])
         self.connect_ActiveMQ.connect(wait=True)
@@ -80,10 +80,10 @@ class producer_data_tips():
 data_geo = fileUpload('wonders-of-world-data-2024', 'wonders_of_world.csv' , s3)
 data_tips = fileUpload('wonders-of-world-data-2024', 'tips_wonders_of_world.csv', s3)
 
-producer_data_geo = producer_data_geo('localhost', 61613, data_geo, 'data_geolocated')  
+producer_data_geo = Producer_Data_Geo('localhost', 61613, data_geo, 'data_geolocated')  
 producer_data_geo.send_data()
 producer_data_geo.close_connection()
 
-producer_data_tips = producer_data_tips('localhost', 61613, data_tips, 'tips')  
+producer_data_tips = Producer_Data_Tips('localhost', 61613, data_tips, 'tips')  
 producer_data_tips.send_data()
 producer_data_tips.close_connection()
