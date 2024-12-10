@@ -26,7 +26,6 @@ class Producer_Data_Geo():
 
     def send_data(self):
         for index, row in self.data.iterrows():
-            print(row)
             time.sleep(1) 
 
             formatted_data = {
@@ -56,7 +55,6 @@ class Producer_Data_Tips():
 
     def send_data(self):
         for index, row in self.data.iterrows():
-            print(row)
             time.sleep(1) 
 
             formatted_data = {

@@ -31,7 +31,6 @@ def inputUserGeoHash():
 
 def convertToGeoHash(data_GeolocalitionData, precision):
     geohash = geohash2.encode(data_GeolocalitionData[0], data_GeolocalitionData[1], precision)
-    print(f"Geohash: {geohash}")
 
     return geohash
 

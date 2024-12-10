@@ -2,11 +2,9 @@ import pandas as pb
 import socket as sk
 import functions
 
-
 data_Wonders = pb.read_csv('wonders_of_world.csv', encoding='ISO-8859-1')
 data_Tips = pb.read_csv('tips_wonders_of_world.csv', encoding='ISO-8859-1')
 
-#server = sk.
 
 
 def main():
@@ -17,7 +15,7 @@ def main():
     while game_Status:
     
         data_User = functions.registerUser("Gabriel")
-        data_GeolocalitionData = functions.getGeolocationData(-8.0476, -34.877)
+        data_GeolocalitionData = functions.getGeolocationData(-22.951916, -43.210487)
 
         data_filter = functions.filter_Values_Column(data_Tips)
 
